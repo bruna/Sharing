@@ -24,3 +24,4 @@ A cada objeto que você disponibilizar você ganha pontos para poder pedir objet
 
 ####Processo de Desenvolvimento de Software - Bacharelado em Sistemas de Informação - UFRPE (2016.2)
 - [arianalima](https://github.com/arianalima)<br>
+- [brunavasconcelos](https://github.com/brunapvasconcelos)<br>
