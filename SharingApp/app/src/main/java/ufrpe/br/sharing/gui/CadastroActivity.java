@@ -20,9 +20,6 @@ public class CadastroActivity extends AppCompatActivity {
         final EditText etAddress = (EditText) findViewById(R.id.etAddress);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final Button bRegister = (Button) findViewById(R.id.bRegister);
-
-
-
     }
 
     public static class UserAreaActivity extends AppCompatActivity {

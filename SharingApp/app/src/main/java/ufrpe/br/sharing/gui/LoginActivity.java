@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import ufrpe.br.sharing.R;
 
 public class LoginActivity extends AppCompatActivity {
