@@ -31,14 +31,14 @@
         android:ems="10"
         android:layout_below="@+id/etUsername"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/etPassword"
         android:layout_alignParentEnd="true"
         android:hint="Senha" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/imageView"
         android:scaleType="centerCrop"
@@ -51,8 +51,8 @@
         android:text="Entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:id="@+id/bLogin"
+        android:layout_marginTop="280dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
@@ -61,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bLogin"
+        android:layout_marginTop="00dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/tvRegisterHere"
         android:textSize="20sp" />

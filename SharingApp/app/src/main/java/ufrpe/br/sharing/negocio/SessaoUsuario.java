@@ -1,8 +1,7 @@
 package ufrpe.br.sharing.negocio;
 
-/**
- * Created by bruna on 18/02/17.
- */
+import ufrpe.br.sharing.dominio.Pessoa;
+import ufrpe.br.sharing.dominio.Usuario;
 
 public class SessaoUsuario {
 

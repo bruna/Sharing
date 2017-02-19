@@ -1,12 +1,6 @@
 package ufrpe.br.sharing.dao;
 
-/**
- * Created by bruna on 18/02/17.
- */
-
 public class ScriptSQL {
-
-    public static class ScriptTableSQL {
         public static String getTabelaPessoa() {
 
             StringBuilder pessoaBuilder = new StringBuilder();
@@ -14,7 +8,7 @@ public class ScriptSQL {
             pessoaBuilder.append("_id_pessoa   integer primary key autoincrement,   ");
             pessoaBuilder.append("nome_pessoa  text not null,  ");
             pessoaBuilder.append("email_pessoa text not null unique,   ");
-            pessoaBuilder.append("endereco_pessoa text not null);");
+            pessoaBuilder.append("endereco_pessoa text not null, ");
             pessoaBuilder.append("cpf_pessoa text not null unique,   ");
             pessoaBuilder.append("foto_pessoa text not null);");
             return pessoaBuilder.toString();
@@ -42,7 +36,10 @@ public class ScriptSQL {
             objetoBuilder.append("estado_objeto  text not null, ");
             objetoBuilder.append("descricao_objeto  text not null, ");
             objetoBuilder.append("foto_objeto text not null, ");
+            objetoBuilder.append("id_dono_objeto integer not null, ");
+            objetoBuilder.append("foreign key ( id_dono_objeto ) references tabela_pessoa ( _id_pessoa ), ");
+            objetoBuilder.append("id_alugador_objeto integer, ");
+            objetoBuilder.append("foreign key ( id_alugador_objeto ) references tabela_pessoa ( _id_pessoa ) );");
             return objetoBuilder.toString();
         }
-    }
 }

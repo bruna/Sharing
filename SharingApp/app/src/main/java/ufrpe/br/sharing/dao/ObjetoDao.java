@@ -4,10 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import ufrpe.br.sharing.dominio.Categoria;
+import ufrpe.br.sharing.dominio.Estado;
+import ufrpe.br.sharing.dominio.Objeto;
+import ufrpe.br.sharing.infra.gui.SharingException;
+import ufrpe.br.sharing.negocio.SessaoUsuario;
 
 /**
  * Created by bruna on 18/02/17.
@@ -35,20 +42,25 @@ public class ObjetoDao {
      * @param objeto                    objeto a ser cadastrado no db
      * @throws SharingException         caso o evento nao consiga ser cadastrado
      */
-    public void cadastrarEvento(Objeto objeto) throws SharingException {
+    public void cadastrarObjeto(Objeto objeto) throws SharingException {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(DatabaseHelper.OBJETO_ID, objeto.getId());
         values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
+        values.put(DatabaseHelper.OBJETO_FOTO, objeto.getFoto().toString());
 
 
         values = new ContentValues();
         values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
-        values.put(DatabaseHelper.OBJETO_DESCRICAO, objeto.getDescricao().toString());
+        values.put(DatabaseHelper.OBJETO_CATEGORIA, objeto.getCategoriaEnum().ordinal());
+        values.put(DatabaseHelper.OBJETO_ESTADO, objeto.getEstadoEnum().ordinal());
+        values.put(DatabaseHelper.OBJETO_DESCRICAO, objeto.getDescricao());
 
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
-        values.put(DatabaseHelper.PESSOA_CRIADORA_ID, idPessoa);
+        values.put(DatabaseHelper.OBJETO_DONO_ID, idPessoa);
+
+
 
 
         db.insert(DatabaseHelper.TABELA_OBJETO, null, values);
@@ -62,14 +74,20 @@ public class ObjetoDao {
      * @return                              objeto 'objeto' preenchido
      * @throws SharingException             caso o objeto nao possa ser criado
      */
-    public Objeto criarEvento(Cursor cursor) throws SharingException {
+    public Objeto criarObjeto(Cursor cursor) throws SharingException {
         Objeto objeto = new Objeto();
         objeto.setId(cursor.getInt(0));
         objeto.setNome(cursor.getString(1));
-        objeto.setCategoria(cursor.getString(2));
-        objeto.setEstado(cursor.getString(3));
         objeto.setDescricao(cursor.getString(4));
-        objeto.setFoto(cursor.getString(5));
+        objeto.setFoto(Uri.parse(cursor.getString(5)));
+
+        Categoria categoria = Categoria.values()[cursor.getInt(2)];
+        objeto.setCategoriaEnum(categoria);
+
+        Estado estado = Estado.values()[cursor.getInt(3)];
+        objeto.setEstadoEnum(estado);
+
+
 
         return objeto;
     }

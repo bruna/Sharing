@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Sharing</string>
+
+    <!-- Toast & Notificações -->
+    <string name="login_vazio">Login obrigatório!</string>
+    <string name="login_senha_vazia">Senha obrigatória!</string>
+    <string name="login_curto">Seu login deve ter mais de 4 caracteres!</string>
+    <string name="login_senha_curta">Sua senha deve ter mais de 4 caracteres!</string>
+    <string name="login_invalido">Login inválido</string>
+    <string name="login_sucesso">Bem-vind@,</string>
+    <string name="login_erro">Login e/ou Senha incorretos!</string>
+
+    <string name="cadastro_edt_nome">Nome</string>
+    <string name="cadastro_edt_login">Login</string>
+    <string name="cadastro_edt_senha">Senha</string>
+    <string name="cadastro_edt_confirmar_senha">Confirmar senha</string>
+    <string name="cadastro_edt_email">Email</string>
+    <string name="cadastro_edt_cpf">CPF</string>
+    <string name="cadastro_edt_endereco">Endereço</string>
+    <string name="cadastro_sucesso">Usuário cadastrado com sucesso</string>
+
+
+    <string name="cadastro_nome_vazio">Nome obrigatório!</string>
+    <string name="cadastro_email_vazio">Email obrigatório!</string>
+    <string name="cadastro_cpf_vazio">CPF obrigatório!</string>
+    <string name="cadastro_endereco_vazio">Endereço obrigatório!</string>
+    <string name="cadastro_senha_confirm_vazia">Confirme a senha!</string>
+    <string name="cadastro_email_curto">Seu email deve ter mais de 4 caracteres!</string>
+    <string name="cadastro_cpf_curto">Seu CPF deve ter 11 caracteres!</string>
+    <string name="cadastro_endereco_curto">Seu endereço deve ter mais de 6 caracteres!</string>
+    <string name="cadastro_email_invalido">Email inválido!</string>
+    <string name="cadastro_cpf_invalido">CPF inválido!</string>
+    <string name="cadastro_senha_invalida">Senha inválida</string>
+    <string name="cadastro_senhas_diferentes">Senhas diferentes</string>
+
+    <string name="cadastro_btn">Cadastrar</string>
 </resources>

@@ -4,15 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by bruna on 06/02/17.
- */
+public class DatabaseHelper extends SQLiteOpenHelper{
 
-private static final String NOME_DB = "banco";
-private static final int VERSAO_DB = 1;
+    private static final String NOME_DB = "banco";
+    private static final int VERSAO_DB = 1;
 
     /* singleton */
-public DatabaseHelper (Context context) {
+    public DatabaseHelper (Context context) {
         super(context.getApplicationContext(),NOME_DB,null,VERSAO_DB);
         }
 
@@ -34,20 +32,23 @@ public static final String USUARIO_PESSOA_ID = "id_pessoa_usuario";
 
 //TABELA OBJETO
 public static final String TABELA_OBJETO = "tabela_objeto";
-public static final String OBJETO ID = "_id_objeto";
+public static final String OBJETO_ID = "_id_objeto";
 public static final String OBJETO_NOME = "nome_objeto";
 public static final String OBJETO_CATEGORIA = "categoria_objeto";
 public static final String OBJETO_ESTADO = "estado_objeto";
 public static final String OBJETO_DESCRICAO = "descricao_objeto";
 public static final String OBJETO_FOTO = "foto_objeto";
+public static final String OBJETO_DONO_ID = "id_dono_objeto";
+public static final String OBJETO_ALUGADOR_ID = "id_alugador_objeto";
+
 
 
 @Override
 public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(ScriptTableSQL.getTabelaPessoa());
-        db.execSQL(ScriptTableSQL.getTabelaUsuario());
-        db.execSQL(ScriptTableSQL.getTabelaObjeto());
+        db.execSQL(ScriptSQL.getTabelaPessoa());
+        db.execSQL(ScriptSQL.getTabelaUsuario());
+        db.execSQL(ScriptSQL.getTabelaObjeto());
 
         }
 

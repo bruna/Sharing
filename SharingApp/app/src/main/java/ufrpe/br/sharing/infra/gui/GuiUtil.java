@@ -13,10 +13,6 @@ import ufrpe.br.sharing.R;
 import ufrpe.br.sharing.gui.LoginActivity;
 import ufrpe.br.sharing.negocio.SessaoUsuario;
 
-/**
- * Created by bruna on 18/02/17.
- */
-
 public class GuiUtil {
     private static String nomePessoaLogada;
 
