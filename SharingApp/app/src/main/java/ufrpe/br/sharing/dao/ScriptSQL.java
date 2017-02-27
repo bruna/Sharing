@@ -10,7 +10,8 @@ public class ScriptSQL {
             pessoaBuilder.append("email_pessoa text not null unique,   ");
             pessoaBuilder.append("endereco_pessoa text not null, ");
             pessoaBuilder.append("cpf_pessoa text not null unique,   ");
-            pessoaBuilder.append("foto_pessoa text not null);");
+            pessoaBuilder.append("foto_pessoa text not null, ");
+            pessoaBuilder.append("pontuacao_pessoa integer);");
             return pessoaBuilder.toString();
         }
 
@@ -30,7 +31,7 @@ public class ScriptSQL {
 
             StringBuilder objetoBuilder = new StringBuilder();
             objetoBuilder.append("CREATE TABLE  tabela_objeto ( ");
-            objetoBuilder.append("_id_objeto   integer primary key autoincrement, ");
+            objetoBuilder.append("_id_objeto   integer primary key autoincrement,   ");
             objetoBuilder.append("nome_objeto  text not null unique,  ");
             objetoBuilder.append("categoria_objeto  text not null, ");
             objetoBuilder.append("estado_objeto  text not null, ");

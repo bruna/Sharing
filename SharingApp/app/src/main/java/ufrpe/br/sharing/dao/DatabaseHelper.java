@@ -22,6 +22,7 @@ public static final String PESSOA_EMAIL = "email_pessoa";
 public static final String PESSOA_ENDERECO = "endereco_pessoa";
 public static final String PESSOA_CPF = "cpf_pessoa";
 public static final String PESSOA_FOTO = "foto_pessoa";
+public static final String PESSOA_PONTUACAO = "pontuacao_pessoa";
 
 //TABELA USUARIO
 public static final String TABELA_USUARIO = "tabela_usuario";
@@ -48,7 +49,7 @@ public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(ScriptSQL.getTabelaPessoa());
         db.execSQL(ScriptSQL.getTabelaUsuario());
-        db.execSQL(ScriptSQL.getTabelaObjeto());
+        //db.execSQL(ScriptSQL.getTabelaObjeto());
 
         }
 

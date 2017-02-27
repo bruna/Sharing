@@ -9,16 +9,13 @@ import android.net.Uri;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import ufrpe.br.sharing.dominio.Categoria;
 import ufrpe.br.sharing.dominio.Estado;
 import ufrpe.br.sharing.dominio.Objeto;
 import ufrpe.br.sharing.infra.gui.SharingException;
 import ufrpe.br.sharing.negocio.SessaoUsuario;
-
-/**
- * Created by bruna on 18/02/17.
- */
 
 public class ObjetoDao {
 
@@ -52,7 +49,7 @@ public class ObjetoDao {
 
 
         values = new ContentValues();
-        values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
+        //values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
         values.put(DatabaseHelper.OBJETO_CATEGORIA, objeto.getCategoriaEnum().ordinal());
         values.put(DatabaseHelper.OBJETO_ESTADO, objeto.getEstadoEnum().ordinal());
         values.put(DatabaseHelper.OBJETO_DESCRICAO, objeto.getDescricao());
@@ -87,8 +84,60 @@ public class ObjetoDao {
         Estado estado = Estado.values()[cursor.getInt(3)];
         objeto.setEstadoEnum(estado);
 
+        return objeto;
+    }
+
+    public Objeto buscarObjetoNome(String nome) throws SharingException {
+        SQLiteDatabase db;
+        db = databaseHelper.getReadableDatabase();
+
+        Objeto objeto = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_OBJETO +
+                " WHERE " + databaseHelper.OBJETO_NOME + " =?", new String[]{nome});
+
+        if (cursor.moveToFirst()){
+            objeto = criarObjeto(cursor);
+        }
+        db.close();
+        cursor.close();
+        return objeto;
+    }
 
 
+    public ArrayList<Objeto> buscarNomeDescricaoParcial(int id, String nome) throws SharingException {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_OBJETO + " WHERE " + databaseHelper.OBJETO_NOME +
+                " LIKE ? OR " + databaseHelper.OBJETO_DESCRICAO + " LIKE ?)", new String[]{"%" + nome + "%", "%" + nome + "%"});
+
+        Objeto objeto = null;
+        if(cursor.getCount() > 0){
+            while(cursor.moveToNext()){
+                objeto = criarObjeto(cursor);
+                listaObjetos.add(objeto);
+            }
+        }
+        cursor.close();
+        return listaObjetos;
+    }
+
+    public Objeto buscarObjetoNomeEDono (int id, String nome) throws SharingException{
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_OBJETO + " WHERE " + databaseHelper.OBJETO_NOME +
+        " =? AND " + databaseHelper.OBJETO_DONO_ID + " =?)", new String[]{nome, String.valueOf(id)});
+
+        Objeto objeto = null;
+        if (cursor.moveToFirst()){
+            objeto =criarObjeto(cursor);
+        }
+        db.close();
+        cursor.close();
         return objeto;
     }
 }

@@ -56,6 +56,10 @@ public class UsuarioNegocio {
         if (pessoaEncontrada != null) {
             throw new SharingException("Email já cadastrado");
         }
+        pessoaEncontrada = usuarioDao.buscarPessoaCpf(pessoa.getCpf());
+        if (pessoaEncontrada!=null){
+            throw new SharingException("CPF já cadastrado");
+        }
         usuarioDao.cadastrarPessoa(pessoa);
     }
 

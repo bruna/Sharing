@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Cadastrar Objetos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="30sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/background_dark"
+        android:textAlignment="center" />
+
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true"
+        >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
+        <ImageView
+        android:id="@+id/userPicture"
+        android:layout_marginTop="50dp"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/object_default"
+        />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-45dp"
+        android:layout_marginLeft="235dp"
+        android:onClick="tirarFotoObj"
+        android:background="@drawable/camera_icon"
+         />
+
+        <EditText android:id="@+id/input_nomeObjeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:inputType="textCapWords"
+            android:hint="@string/cadastro_edt_nome"/>
+
+        <EditText android:id="@+id/input_descriObjetoObjeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:inputType="textCapWords"
+            android:hint="@string/cadastro_edt_descricao"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:spinnerMode="dropdown"
+            android:id="@+id/spinnerCategoria" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/cadastro_btn"
+            android:id="@+id/btnCadastrarObjeto"/>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

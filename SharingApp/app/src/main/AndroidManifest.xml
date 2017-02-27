@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".gui.CadastroActivity" />
-
         <activity android:name=".gui.PerfilActivity" />
+        <activity android:name=".gui.CadastroObjetoActivity" />
 
     </application>
 

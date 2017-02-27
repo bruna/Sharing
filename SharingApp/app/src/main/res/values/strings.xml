@@ -33,5 +33,13 @@
     <string name="cadastro_senha_invalida">Senha inválida</string>
     <string name="cadastro_senhas_diferentes">Senhas diferentes</string>
 
+    <string name="adcObjeto_edt_descricao">Descrição obrigatória!</string>
+    <string name="adcObjeto_nome_curto">Nome muito curto!</string>
+    <string name="adcEvento_descricao_curta">Descrição muito curta!</string>
+    <string name="adc_objeto_sucesso">Objeto cadastrado com sucesso!</string>
+
+    <string name="cadastro_edt_descricao">Descrição</string>
+
+
     <string name="cadastro_btn">Cadastrar</string>
 </resources>

@@ -86,7 +86,6 @@ public class UsuarioDao {
         pessoa.setNome(cursor.getString(1));
         pessoa.setEmail(cursor.getString(2));
         pessoa.setFoto(Uri.parse(cursor.getString(3)));
-        //pessoa.setAmigos(cursor.getString(4));
         return pessoa;
     }
 
@@ -170,6 +169,19 @@ public class UsuarioDao {
         Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABELA_PESSOA +
                 " WHERE " + DatabaseHelper.PESSOA_EMAIL + " = ? ", new String[]{email});
         if (cursor.moveToFirst()) {
+            pessoa = criarPessoa(cursor);
+        }
+        db.close();
+        cursor.close();
+        return pessoa;
+    }
+
+    public Pessoa buscarPessoaCpf(String cpf) throws SharingException{
+        Pessoa pessoa = null;
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+DatabaseHelper.TABELA_PESSOA +
+            " WHERE "+ DatabaseHelper.PESSOA_CPF + " = ? ", new String[]{cpf});
+        if (cursor.moveToFirst()){
             pessoa = criarPessoa(cursor);
         }
         db.close();

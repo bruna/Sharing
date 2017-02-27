@@ -16,6 +16,7 @@ public class Pessoa {
     private String endereco;
     private String cpf;
     private Uri foto;
+    private int pontuacao;
 
 
     public Pessoa() {
@@ -25,6 +26,7 @@ public class Pessoa {
         this.cpf = null;
         this.foto = null;
         this.usuario=null;
+        this.pontuacao=0;
     }
 
     public int getId(){
@@ -62,7 +64,7 @@ public class Pessoa {
         this.foto = foto;
     }
 
-
-
+    public int getPontuacao(){return pontuacao;}
+    public void setPontuacao(int pontuacao){this.pontuacao = pontuacao;}
 
 }

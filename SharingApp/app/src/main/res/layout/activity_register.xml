@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/userPicture"
@@ -28,14 +29,13 @@
                 />
 
             <Button
-                android:layout_width="48dp"
-                android:layout_height="36dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="right"
-                android:layout_marginTop="-80dp"
+                android:layout_marginTop="-45dp"
                 android:onClick="tirarFoto"
-                android:background="@color/colorPrimary"
-                android:drawableBottom="@android:drawable/ic_menu_camera"
-                />
+                android:background="@drawable/camera_icon"
+                android:layout_weight="0.32" />
 
             <EditText android:id="@+id/input_nome"
                 android:layout_width="match_parent"
