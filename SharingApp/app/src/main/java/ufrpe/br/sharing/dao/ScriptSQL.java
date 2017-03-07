@@ -32,14 +32,14 @@ public class ScriptSQL {
             StringBuilder objetoBuilder = new StringBuilder();
             objetoBuilder.append("CREATE TABLE  tabela_objeto ( ");
             objetoBuilder.append("_id_objeto   integer primary key autoincrement,   ");
-            objetoBuilder.append("nome_objeto  text not null unique,  ");
+            objetoBuilder.append("nome_objeto  text not null,  ");
             objetoBuilder.append("categoria_objeto  text not null, ");
             objetoBuilder.append("estado_objeto  text not null, ");
             objetoBuilder.append("descricao_objeto  text not null, ");
             objetoBuilder.append("foto_objeto text not null, ");
             objetoBuilder.append("id_dono_objeto integer not null, ");
-            objetoBuilder.append("foreign key ( id_dono_objeto ) references tabela_pessoa ( _id_pessoa ), ");
             objetoBuilder.append("id_alugador_objeto integer, ");
+            objetoBuilder.append("foreign key ( id_dono_objeto ) references tabela_pessoa ( _id_pessoa ), ");
             objetoBuilder.append("foreign key ( id_alugador_objeto ) references tabela_pessoa ( _id_pessoa ) );");
             return objetoBuilder.toString();
         }

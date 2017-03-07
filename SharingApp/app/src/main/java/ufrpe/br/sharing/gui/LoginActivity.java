@@ -108,11 +108,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void startSignUpActivity() {
-        Intent i = new Intent(LoginActivity.this,CadastroActivity.class);
-        startActivity(i);
-    }
-
     public void startNavigationActivity() {
         startActivity(new Intent(this, PerfilActivity.class));
         finish();

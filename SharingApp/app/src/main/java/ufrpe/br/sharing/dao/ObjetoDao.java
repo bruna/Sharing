@@ -44,20 +44,16 @@ public class ObjetoDao {
         ContentValues values = new ContentValues();
 
         values.put(DatabaseHelper.OBJETO_ID, objeto.getId());
-        values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
-        values.put(DatabaseHelper.OBJETO_FOTO, objeto.getFoto().toString());
-
 
         values = new ContentValues();
-        //values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
+        values.put(DatabaseHelper.OBJETO_FOTO, objeto.getFoto().toString());
+        values.put(DatabaseHelper.OBJETO_NOME, objeto.getNome());
         values.put(DatabaseHelper.OBJETO_CATEGORIA, objeto.getCategoriaEnum().ordinal());
         values.put(DatabaseHelper.OBJETO_ESTADO, objeto.getEstadoEnum().ordinal());
         values.put(DatabaseHelper.OBJETO_DESCRICAO, objeto.getDescricao());
 
         int idPessoa = SessaoUsuario.getInstancia().getPessoaLogada().getId();
         values.put(DatabaseHelper.OBJETO_DONO_ID, idPessoa);
-
-
 
 
         db.insert(DatabaseHelper.TABELA_OBJETO, null, values);
@@ -147,7 +143,7 @@ public class ObjetoDao {
         ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
 
         //Cursor cursor = db.rawQuery("SELECT * FROM "+ databaseHelper.TABELA_OBJETO + " WHERE " + databaseHelper.OBJETO_ESTADO +
-        //" =?)", new String[]{"DISPONIVEL"});
+        //" =?)", new String[]{"0"});
 
         Cursor cursor = db.rawQuery("SELECT * FROM "+ databaseHelper.TABELA_OBJETO , null);
 

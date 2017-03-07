@@ -2,17 +2,26 @@ package ufrpe.br.sharing.gui;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
+import java.io.File;
 import java.text.ParseException;
+import java.util.Date;
 
 import ufrpe.br.sharing.R;
 import ufrpe.br.sharing.dominio.Categoria;
@@ -28,6 +37,11 @@ public class CadastroObjetoActivity extends AppCompatActivity{
     private ObjetoNegocio objetoNegocio;
     private SessaoUsuario sessaoUsuario;
     private Pessoa pessoaLogada;
+
+    private ImageView imgFoto;
+    private File caminhoFoto;
+    public static final int TIRA_FOTO = 1;
+    Uri foto = FOTO_PADRAO;
 
     private EditText editObjetoNome;
     private EditText editObjetoDescricao;
@@ -45,6 +59,7 @@ public class CadastroObjetoActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adc_objeto);
 
+        imgFoto = (ImageView)findViewById(R.id.objPicture);
         resources = getResources();
 
         this.setCamposAdcObjeto();
@@ -135,6 +150,7 @@ public class CadastroObjetoActivity extends AppCompatActivity{
                 objeto.setDescricao(descricaoObjeto);
                 objeto.setCategoriaEnum(categoriaObjeto);
                 objeto.setEstadoEnum(estadoObjeto);
+                objeto.setFoto(FOTO_PADRAO);
                 objetoNegocio.validarCadastroObjeto(objeto);
                 GuiUtil.exibirMsg(this, getString(R.string.adc_objeto_sucesso));
                 startPerfilActivity();
@@ -148,5 +164,53 @@ public class CadastroObjetoActivity extends AppCompatActivity{
     public void startPerfilActivity() {
         startActivity(new Intent(this, PerfilActivity.class));
         finish();
+    }
+
+    public void tirarFotoObj(View v){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss.png", new Date()).toString();
+
+            caminhoFoto = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto);
+
+            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(caminhoFoto));
+            startActivityForResult(i, TIRA_FOTO);
+        }else{
+            caminhoFoto = null;
+        }
+    }
+
+    public static final Uri FOTO_PADRAO = Uri.parse("android.resource://ufrpe.br.sharing/"+R.drawable.user);
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == TIRA_FOTO && ajustarFoto() != null){
+            foto = GuiUtil.getInstancia().getImageUri(CadastroObjetoActivity.this , ajustarFoto());
+        }else{
+            foto = FOTO_PADRAO;
+        }
+    }
+
+    private Bitmap ajustarFoto() {
+        if(caminhoFoto != null){
+            int targetwidth = imgFoto.getWidth();
+            int targetHeight = imgFoto.getHeight();
+
+            BitmapFactory.Options bmOption = new BitmapFactory.Options();
+
+            bmOption.inJustDecodeBounds = false;
+            BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+            int photoW = bmOption.outWidth;
+            int photoH = bmOption.outHeight;
+
+            int scaleFactor = Math.min(photoW / targetwidth, photoH / targetHeight);
+            bmOption.inSampleSize = scaleFactor;
+
+            Bitmap bmp = BitmapFactory.decodeFile(caminhoFoto.getAbsolutePath(), bmOption);
+
+            imgFoto.setImageBitmap(bmp);
+            return bmp;
+        } return null;
     }
 }

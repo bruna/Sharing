@@ -32,7 +32,7 @@
             android:textAlignment="center" />
 
         <ImageView
-        android:id="@+id/userPicture"
+        android:id="@+id/objPicture"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
