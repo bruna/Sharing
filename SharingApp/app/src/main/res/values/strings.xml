@@ -40,6 +40,8 @@
 
     <string name="cadastro_edt_descricao">Descrição</string>
 
+    <string name="busca">Busca</string>
+
 
     <string name="cadastro_btn">Cadastrar</string>
 </resources>

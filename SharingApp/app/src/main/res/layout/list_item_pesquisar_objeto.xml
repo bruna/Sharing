@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/img_objeto"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/txtitem_descricao_objeto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="46dp"
+        android:textSize="14sp"
+        android:text="descrição"
+        android:layout_weight="0.02"
+        android:layout_alignBottom="@+id/img_objeto"
+        android:layout_marginBottom="32dp"
+        android:layout_toEndOf="@+id/img_objeto" />
+
+    <TextView
+        android:id="@+id/txtitem_nome_objeto"
+        android:layout_width="161dp"
+        android:layout_height="57dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="nome do objeto"
+        android:layout_alignTop="@+id/img_objeto"
+        android:layout_alignStart="@+id/txtitem_descricao_objeto" />
+
+</RelativeLayout>

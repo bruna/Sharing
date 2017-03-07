@@ -130,7 +130,7 @@ public class ObjetoDao {
         ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + databaseHelper.TABELA_OBJETO + " WHERE " + databaseHelper.OBJETO_NOME +
-        " =? AND " + databaseHelper.OBJETO_DONO_ID + " =?)", new String[]{nome, String.valueOf(id)});
+        " =? AND " + databaseHelper.OBJETO_DONO_ID + " =?", new String[]{nome, String.valueOf(id)});
 
         Objeto objeto = null;
         if (cursor.moveToFirst()){
@@ -139,5 +139,25 @@ public class ObjetoDao {
         db.close();
         cursor.close();
         return objeto;
+    }
+
+    public ArrayList<Objeto> listarObjetos() throws SharingException{
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
+
+        //Cursor cursor = db.rawQuery("SELECT * FROM "+ databaseHelper.TABELA_OBJETO + " WHERE " + databaseHelper.OBJETO_ESTADO +
+        //" =?)", new String[]{"DISPONIVEL"});
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ databaseHelper.TABELA_OBJETO , null);
+
+        Objeto objeto = null;
+        if (cursor.moveToNext()){
+            objeto = criarObjeto(cursor);
+            listaObjetos.add(objeto);
+        }
+        db.close();
+        cursor.close();
+        return listaObjetos;
     }
 }

@@ -2,6 +2,7 @@ package ufrpe.br.sharing.negocio;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ufrpe.br.sharing.dao.ObjetoDao;
@@ -45,4 +46,8 @@ public class ObjetoNegocio {
         objetoDao.cadastrarObjeto(objeto);
     }
 
+    public ArrayList<Objeto> listarObjetos( ) throws SharingException{
+        return objetoDao.listarObjetos();
+
+    }
 }

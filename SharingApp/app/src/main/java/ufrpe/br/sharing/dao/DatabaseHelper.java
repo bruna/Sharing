@@ -49,7 +49,7 @@ public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(ScriptSQL.getTabelaPessoa());
         db.execSQL(ScriptSQL.getTabelaUsuario());
-        //db.execSQL(ScriptSQL.getTabelaObjeto());
+        db.execSQL(ScriptSQL.getTabelaObjeto());
 
         }
 
